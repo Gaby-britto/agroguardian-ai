@@ -216,6 +216,6 @@ O desenvolvimento do **AgroGuardian AI** seguirá uma abordagem incremental, gar
 ###  Sprint 6 — Evolução e Escalabilidade
 - Integração com dados reais (APIs e sensores)  
 - Refinamento do modelo com novos dados
+- Expansão das funcionalidades (automação e recomendações avançadas)
 
 > Projeto desenvolvido individualmente, contemplando todas as etapas da solução, da concepção à arquitetura.
-- Expansão das funcionalidades (automação e recomendações avançadas)  
