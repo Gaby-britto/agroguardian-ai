@@ -167,7 +167,7 @@ F --> G[Dashboard]
 G --> H[Usuário]
  ```
 
-##  Tecnologias Utilizadas
+## Tecnologias Utilizadas
 - Python
 - Pandas
 - Scikit-learn
@@ -187,4 +187,35 @@ G --> H[Usuário]
 ##  Valor de Negócio
 - Redução de custos com sinistros
 - Aumento da eficiência operacional
-- Produto escalável para seguradoras#
+- Produto escalável para seguradoras
+
+##  Planejamento das Próximas Etapas
+
+O desenvolvimento do **AgroGuardian AI** seguirá uma abordagem incremental, garantindo evolução contínua da solução:
+
+###  Sprint 2 — Estruturação e Expansão dos Dados
+- Definição final das variáveis do modelo  
+- Criação e validação do dataset simulado  
+- Análise exploratória inicial (correlações e padrões)  
+
+###  Sprint 3 — Desenvolvimento do Modelo de IA
+- Implementação de modelos de classificação (Decision Tree / Random Forest)  
+- Treinamento e validação inicial do modelo  
+- Avaliação de desempenho (acurácia e ajuste de parâmetros)  
+
+###  Sprint 4 — Integração e Interface
+- Desenvolvimento da API para comunicação com o modelo  
+- Criação do dashboard interativo  
+- Exibição de risco, alertas e recomendações em tempo real  
+
+###  Sprint 5 — Testes e Validação
+- Testes com diferentes cenários simulados  
+- Ajustes no modelo e nas regras de decisão  
+- Validação da consistência dos resultados  
+
+###  Sprint 6 — Evolução e Escalabilidade
+- Integração com dados reais (APIs e sensores)  
+- Refinamento do modelo com novos dados
+
+> Projeto desenvolvido individualmente, contemplando todas as etapas da solução, da concepção à arquitetura.
+- Expansão das funcionalidades (automação e recomendações avançadas)  
