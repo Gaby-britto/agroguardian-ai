@@ -1,11 +1,6 @@
 # 🌱 AgroGuardian AI  
 ### Inteligência preditiva e preventiva para operações agrícolas
 Transformando decisões agrícolas reativas em inteligência preditiva baseada em dados
-
-<p align="center">
-  <img src="https://imgur.com/8QZ7Z6H.png" width="800"/>
-</p>
-
 ---
 
 ##  Descrição do Projeto
@@ -29,7 +24,11 @@ Grande parte das decisões ainda são tomadas de forma **reativa**, apenas após
 
 - Altos custos  
 - Perda de equipamentos  
-- Baixa eficiência operacional  
+- Baixa eficiência operacional
+
+Além disso, situações reais evidenciam o problema: imagine um operador realizando a colheita após um período de chuva intensa, em uma área próxima a um rio. Sem análise prévia, o solo pode estar instável, aumentando significativamente o risco de atolamento, falhas mecânicas e prejuízos financeiros. 
+
+Esse cenário demonstra a necessidade de transformar decisões reativas em decisões preditivas, baseadas em dados.
 
 ---
 
@@ -57,17 +56,20 @@ O AgroGuardian AI propõe um sistema inteligente capaz de:
 
 ##  Personas
 
-###  Operador de Máquinas
-- Necessidade: decisões rápidas e seguras  
-- Solução: alertas em tempo real + recomendações  
+### Operador de Máquinas
+- Necessidade: tomar decisões rápidas e seguras durante a operação  
+- Dor: risco de acidentes, falhas e perda de produtividade  
+- Solução: alertas em tempo real e recomendações preventivas  
 
-###  Gestor Agrícola
-- Necessidade: planejamento e controle  
-- Solução: dashboard + análise de risco  
+### Gestor Agrícola
+- Necessidade: planejamento estratégico e controle operacional  
+- Dor: altos custos com falhas e baixa previsibilidade  
+- Solução: dashboard com análise de risco e apoio à tomada de decisão  
 
-###  Seguradora
-- Necessidade: reduzir prejuízos  
-- Solução: análise preditiva e score de risco  
+### Seguradora
+- Necessidade: reduzir sinistros e prever riscos dos clientes  
+- Dor: dificuldade em antecipar eventos de alto custo  
+- Solução: score de risco inteligente e análise preditiva  
 
 ---
 
@@ -142,6 +144,15 @@ Classificar o nível de risco operacional
 ###  Abordagem
 - Modelos de classificação (Decision Tree, Random Forest)
 
+### Justificativa da Abordagem
+
+Os modelos de classificação foram escolhidos por sua eficiência na análise de múltiplas variáveis e capacidade de identificar padrões complexos.
+
+- **Decision Tree**: permite fácil interpretação das decisões, sendo útil para explicar os fatores de risco.
+- **Random Forest**: melhora a precisão ao combinar múltiplas árvores, reduzindo overfitting e aumentando a robustez do modelo.
+
+Essa abordagem é ideal para cenários com dados heterogêneos e variáveis ambientais dinâmicas.
+
 ---
 
 ##  Uso da Inteligência Artificial
@@ -179,10 +190,13 @@ G --> H[Usuário]
 - Alertas em tempo real
 - Recomendações automáticas
 
-##  Segurança
-- Controle de acesso por perfil
-- Proteção de dados
-- Logs de operação
+## Segurança
+
+- Autenticação de usuários (JWT)  
+- Controle de acesso por perfil (RBAC)  
+- Proteção e criptografia de dados sensíveis  
+- Registro de logs para auditoria  
+- Garantia de integridade das informações  
 
 ##  Valor de Negócio
 - Redução de custos com sinistros
