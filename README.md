@@ -1,6 +1,6 @@
 # 🌱 AgroGuardian AI  
 ### Inteligência preditiva e preventiva para operações agrícolas
-Transformando decisões agrícolas reativas em inteligência preditiva baseada em dados
+### Transformando decisões agrícolas reativas em inteligência preditiva baseada em dados
 ---
 
 ##  Descrição do Projeto
@@ -231,5 +231,9 @@ O desenvolvimento do **AgroGuardian AI** seguirá uma abordagem incremental, gar
 - Integração com dados reais (APIs e sensores)  
 - Refinamento do modelo com novos dados
 - Expansão das funcionalidades (automação e recomendações avançadas)
+
+## 🎥 Apresentação em Vídeo
+
+Link do vídeo: https://youtu.be/261MIbsOJ_M?si=QonzMxd4Xf-3H_bO
 
 > Projeto desenvolvido individualmente, contemplando todas as etapas da solução, da concepção à arquitetura.
