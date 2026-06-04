@@ -433,10 +433,21 @@ Identificação dos fatores que mais impactam o risco operacional.
 
 ## 9. Dashboard e Simulação de Cenários
 
-<img width="1772" height="763" alt="image" src="https://github.com/user-attachments/assets/9dc68cc5-398e-4f95-b734-2557e77d333b" />
 
+<img width="1805" height="494" alt="image" src="https://github.com/user-attachments/assets/0ba61a68-837c-4098-9555-7350ba158585" />
 
 Visualização dos indicadores e previsão de novos cenários.
+
+---
+
+## 10. Sistema de Recomendações
+<img width="1793" height="456" alt="image" src="https://github.com/user-attachments/assets/02964c95-fe85-4724-9373-fdb933e7414b" />
+
+Além da classificação de risco, o AgroGuardian AI gera recomendações preventivas automáticas para auxiliar operadores, gestores agrícolas e seguradoras na tomada de decisão.
+
+As recomendações são geradas dinamicamente conforme o nível de risco identificado pelo modelo de Inteligência Artificial.
+
+--- 
 # 🎥 Apresentação em Vídeo
 
 Link do vídeo:
