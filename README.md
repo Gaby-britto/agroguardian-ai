@@ -2,7 +2,14 @@
 ### Inteligência preditiva e preventiva para operações agrícolas
 ### Transformando decisões agrícolas reativas em inteligência preditiva baseada em dados
 ---
+## Sumário
 
+- [ Sprint 1](#sprint-1)
+- [ Sprint 2](#sprint-2)
+
+---
+
+#  Sprint 1
 ##  Descrição do Projeto
 
 O **AgroGuardian AI** é uma solução baseada em dados e Inteligência Artificial que tem como objetivo **identificar, prever e reduzir riscos operacionais e ambientais no uso de equipamentos agrícolas**.
@@ -237,3 +244,201 @@ O desenvolvimento do **AgroGuardian AI** seguirá uma abordagem incremental, gar
 Link do vídeo: https://youtu.be/261MIbsOJ_M?si=QonzMxd4Xf-3H_bO
 
 > Projeto desenvolvido individualmente, contemplando todas as etapas da solução, da concepção à arquitetura.
+---
+
+#  Sprint 2
+
+Nesta etapa do Challenge Sompo Seguros, o projeto evoluiu da fase conceitual para uma implementação funcional, integrando Engenharia de Dados, Machine Learning e Visualização de Dados.
+
+### Funcionalidades Implementadas
+
+####  Geração de Dados
+
+- Dataset agrícola simulado com mais de 1000 registros
+- Variáveis ambientais, operacionais e históricas
+- Classificação automática de risco
+
+####  Banco de Dados
+
+- Banco SQLite para persistência dos dados
+- Armazenamento histórico das leituras
+- Estrutura preparada para auditoria e rastreabilidade
+
+####  Inteligência Artificial
+
+- Modelo Random Forest
+- Classificação dos riscos em:
+  - Baixo
+  - Médio
+  - Alto
+  - Crítico
+
+####  Validação Estatística
+
+- Accuracy Score
+- Matriz de Confusão
+- Classification Report
+- Importância das Variáveis
+
+####  Dashboard Interativo
+
+- Visualização dos registros
+- Distribuição dos níveis de risco
+- Simulação de cenários
+- Recomendações preventivas
+
+---
+#  Estrutura do Projeto
+
+```text
+AgroGuardianAI/
+│
+├── data/
+│   └── dataset_sompo.csv
+│
+├── database/
+│   └── agroguardian.db
+│
+├── dashboard/
+│   └── app.py
+│
+├── src/
+│   ├── dataset_generator.py
+│   ├── database_setup.py
+│   ├── model.py
+│   └── menu.py
+│
+├── requirements.txt
+│
+└── README.md
+```
+
+---
+#  Arquitetura da Solução
+
+```mermaid
+flowchart TD
+
+A[Dataset Simulado] --> B[CSV]
+
+B --> C[SQLite]
+
+C --> D[Random Forest]
+
+D --> E[Classificação de Risco]
+
+E --> F[Dashboard Streamlit]
+
+F --> G[Operador]
+
+F --> H[Gestor]
+
+F --> I[Seguradora]
+```
+
+---
+#  Como Executar
+
+Instalar dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+Executar menu principal:
+
+```bash
+python src/menu.py
+```
+
+Executar dashboard:
+
+```bash
+streamlit run dashboard/app.py
+```
+
+---
+
+# 📸 Evidências da Implementação
+
+## 1. Menu Principal
+
+<img width="516" height="278" alt="image" src="https://github.com/user-attachments/assets/887ead74-07cc-4797-88b6-226a47413c90" />
+
+
+O menu centraliza todas as funcionalidades do sistema.
+
+---
+
+## 2. Dataset Gerado
+
+<img width="877" height="472" alt="image" src="https://github.com/user-attachments/assets/fa9c3e3c-529d-49f3-9e6f-f92e8566f095" />
+
+
+Dataset simulado contendo variáveis ambientais, operacionais e históricas.
+
+---
+
+## 3. Banco de Dados SQLite
+
+<img width="1171" height="646" alt="image" src="https://github.com/user-attachments/assets/82d09809-2258-4964-95fe-70197cda179d" />
+
+
+Persistência dos dados para auditoria e rastreabilidade.
+
+---
+
+## 4. Distribuição dos Riscos
+<img width="1783" height="570" alt="image" src="https://github.com/user-attachments/assets/4f567630-299f-4b78-afb5-1f57c6a5be74" />
+
+
+Distribuição dos níveis de risco identificados pelo AgroGuardian AI a partir do dataset simulado. O gráfico permite visualizar a concentração de cenários classificados como Baixo, Médio, Alto e Crítico, auxiliando gestores e seguradoras na análise preventiva dos riscos operacionais.
+
+---
+
+## 5. Treinamento do Modelo
+
+<img width="738" height="368" alt="image" src="https://github.com/user-attachments/assets/301cab04-fff0-44a7-8c2a-96ccf3a9e25f" />
+
+
+Execução do treinamento do modelo Random Forest utilizando dados armazenados no banco SQLite. O processo inclui análise de correlação, separação dos dados em treino e teste e geração das previsões.
+
+---
+
+## 6. Accuracy do Modelo
+
+<img width="124" height="79" alt="image" src="https://github.com/user-attachments/assets/ffa7d8eb-4b4a-4734-95a1-5f716e2bd9b6" />
+
+
+O modelo Random Forest alcançou uma acurácia de **96%**, demonstrando alta capacidade de classificação dos níveis de risco operacionais com base nas variáveis ambientais e históricas analisadas.
+
+---
+
+## 7. Matriz de Confusão
+
+<img width="525" height="412" alt="image" src="https://github.com/user-attachments/assets/9fc3520f-a792-4b53-a343-5bdf39b9f35c" />
+
+A matriz de confusão evidencia que a maior parte das classificações ocorreu corretamente, demonstrando que o modelo é capaz de identificar padrões de risco operacional de forma confiável.
+
+---
+
+## 8. Importância das Variáveis
+
+<img width="1771" height="399" alt="image" src="https://github.com/user-attachments/assets/d4ba09ba-a264-40be-a34b-3324f584e3aa" />
+
+
+Identificação dos fatores que mais impactam o risco operacional.
+
+---
+
+## 9. Dashboard e Simulação de Cenários
+
+<img width="1772" height="763" alt="image" src="https://github.com/user-attachments/assets/9dc68cc5-398e-4f95-b734-2557e77d333b" />
+
+
+Visualização dos indicadores e previsão de novos cenários.
+# 🎥 Apresentação em Vídeo
+
+Link do vídeo:
+
+https://youtu.be/261MIbsOJ_M?si=QonzMxd4Xf-3H_bO
