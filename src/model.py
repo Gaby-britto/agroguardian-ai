@@ -1,65 +1,162 @@
-# Importa bibliotecas necessárias
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import confusion_matrix, classification_report
-
 import sqlite3
+import pandas as pd
 
-conn = sqlite3.connect("agroguardian.db")
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 
-# Lê dados da tabela sensors
-df = pd.read_sql("SELECT * FROM sensors", conn)
+from sklearn.metrics import (
+    confusion_matrix,
+    classification_report,
+    accuracy_score
+)
+
+# ==========================================================
+# 1. CONECTA AO BANCO
+# ==========================================================
+
+print("Conectando ao banco...")
+
+conn = sqlite3.connect("database/agroguardian.db")
+
+df = pd.read_sql(
+    "SELECT * FROM sensors",
+    conn
+)
 
 conn.close()
 
-print("✅ Data loaded from database!")
+print("Dados carregados com sucesso!")
+print(f"Total de registros: {len(df)}")
 
+# ==========================================================
+# 2. PREPARAÇÃO DOS DADOS
+# ==========================================================
 
-# Variáveis de entrada (features)
-X = df[['umidade', 'inclinacao', 'distancia_agua', 'chuva', 'historico']]
+X = df[
+    [
+        "umidade",
+        "inclinacao",
+        "distancia_agua",
+        "chuva",
+        "historico"
+    ]
+]
 
-# Variável alvo (target)
-y = df['risco']
+y = df["risco"]
 
+# ==========================================================
+# 3. CORRELAÇÃO
+# ==========================================================
 
-# ==========================================
-# 3. SEPARAR TREINO E TESTE
-# ==========================================
+print("\nCorrelação das variáveis:")
+
+correlation = X.corr()
+
+print(correlation)
+
+# ==========================================================
+# 4. TREINO E TESTE
+# ==========================================================
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X,
+    y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y
 )
 
-print("✅ Data split into train and test!")
+print("\nDados separados para treino e teste.")
 
+# ==========================================================
+# 5. TREINAMENTO
+# ==========================================================
 
-# ==========================================
-# 4. CRIAR E TREINAR MODELO
-# ==========================================
-
-model = DecisionTreeClassifier()
+model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
 
 model.fit(X_train, y_train)
 
-print("✅ Model trained!")
+print("Modelo treinado com sucesso!")
 
-
-# ==========================================
-# 5. FAZER PREVISÕES
-# ==========================================
+# ==========================================================
+# 6. PREVISÕES
+# ==========================================================
 
 predictions = model.predict(X_test)
 
-print("✅ Predictions generated!")
+print("Previsões realizadas!")
 
+# ==========================================================
+# 7. MÉTRICAS
+# ==========================================================
 
-# ==========================================
-# 6. VALIDAR MODELO
-# ==========================================
+accuracy = accuracy_score(
+    y_test,
+    predictions
+)
 
-print("\n📊 Confusion Matrix:")
-print(confusion_matrix(y_test, predictions))
+print("\nACCURACY:")
+print(f"{accuracy:.2%}")
 
-print("\n📊 Classification Report:")
-print(classification_report(y_test, predictions))
+print("\nMATRIZ DE CONFUSÃO:")
+print(
+    confusion_matrix(
+        y_test,
+        predictions
+    )
+)
+
+print("\nCLASSIFICATION REPORT:")
+print(
+    classification_report(
+        y_test,
+        predictions
+    )
+)
+
+# ==========================================================
+# 8. IMPORTÂNCIA DAS VARIÁVEIS
+# ==========================================================
+
+print("\nImportância das variáveis:")
+
+importance = pd.DataFrame({
+    "Variavel": X.columns,
+    "Importancia": model.feature_importances_
+})
+
+importance = importance.sort_values(
+    by="Importancia",
+    ascending=False
+)
+
+print(importance)
+
+# ==========================================================
+# 9. EXEMPLO DE PREVISÃO
+# ==========================================================
+
+novo_cenario = pd.DataFrame({
+    "umidade": [88],
+    "inclinacao": [22],
+    "distancia_agua": [45],
+    "chuva": [40],
+    "historico": [3]
+})
+
+risco_previsto = model.predict(
+    novo_cenario
+)
+
+print("\nExemplo de previsão:")
+
+print(
+    f"Risco previsto: {risco_previsto[0]}"
+)
+
+# ==========================================================
+# FIM
+# ==========================================================

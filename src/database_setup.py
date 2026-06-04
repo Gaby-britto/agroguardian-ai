@@ -1,54 +1,132 @@
 import sqlite3
-
 import pandas as pd
+import os
+from datetime import datetime
 
+# ==========================================================
+# AgroGuardian AI - Database Setup
+# Challenge Sompo Seguros
+# Sprint 2 - Engenharia de Dados
+# ==========================================================
 
-# Cria o banco
-conn = sqlite3.connect("agroguardian.db")
+# Cria a pasta database caso não exista
+os.makedirs("database", exist_ok=True)
 
-# Cria cursor para rodar comandos SQL
+# Caminhos dos arquivos
+DATABASE_PATH = "database/agroguardian.db"
+DATASET_PATH = "data/dataset_sompo.csv"
+
+# ==========================================================
+# Conexão com banco
+# ==========================================================
+
+print("🔌 Conectando ao banco...")
+
+conn = sqlite3.connect(DATABASE_PATH)
 cursor = conn.cursor()
 
-print("✅ Database connected successfully!")
+print(" Banco conectado com sucesso!")
 
-
-# Lê o dataset CSV gerado anteriormente
-df = pd.read_csv("dataset_sompo.csv")
-
-print("✅ Dataset loaded!")
-
+# ==========================================================
+# Criação da tabela
+# ==========================================================
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS sensors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    umidity REAL,
-    inclination REAL,
-    distance_from_water REAL,
-    rainfall REAL,
-    soil TEXT,
-    operation TEXT,
-    history INTEGER,
-    risk INTEGER
+    umidade REAL,
+    inclinacao REAL,
+    distancia_agua REAL,
+    chuva REAL,
+    solo TEXT,
+    operacao TEXT,
+    historico INTEGER,
+    risco TEXT,
+    data_registro TIMESTAMP
 )
 """)
 
-print("✅ Table created!")
+print(" Tabela criada/verificada!")
 
+# ==========================================================
+# Leitura do dataset
+# ==========================================================
 
-# Usa pandas para enviar os dados automaticamente
-df.to_sql("sensors", conn, if_exists="replace", index=False)
+df = pd.read_csv(DATASET_PATH)
 
-print("✅ Data inserted into database!")
+print(f" Dataset carregado: {len(df)} registros")
 
+# Adiciona timestamp de inserção
+df["data_registro"] = datetime.now()
 
-query = "SELECT * FROM sensors LIMIT 5"
+# ==========================================================
+# Inserção dos dados
+# ==========================================================
+
+df.to_sql(
+    "sensors",
+    conn,
+    if_exists="append",
+    index=False
+)
+
+print(" Dados inseridos com sucesso!")
+
+# ==========================================================
+# Consulta de validação
+# ==========================================================
+
+print("\n Primeiros registros:")
+
+query = """
+SELECT *
+FROM sensors
+LIMIT 5
+"""
 
 result = pd.read_sql(query, conn)
 
-print("\n Sample data from database:")
 print(result)
 
+# ==========================================================
+# Estatísticas de risco
+# ==========================================================
 
+print("\n Distribuição dos riscos:")
+
+query_risk = """
+SELECT
+    risco,
+    COUNT(*) AS quantidade
+FROM sensors
+GROUP BY risco
+ORDER BY quantidade DESC
+"""
+
+risk_stats = pd.read_sql(query_risk, conn)
+
+print(risk_stats)
+
+# ==========================================================
+# Total de registros
+# ==========================================================
+
+query_total = """
+SELECT COUNT(*) AS total_registros
+FROM sensors
+"""
+
+total = pd.read_sql(query_total, conn)
+
+print("\n Total armazenado no banco:")
+print(total)
+
+# ==========================================================
+# Finalização
+# ==========================================================
+
+conn.commit()
 conn.close()
 
-print("\n✅ Database connection closed!")
+print(f"\n Banco salvo em: {DATABASE_PATH}")
+print(" Processo finalizado com sucesso!")
