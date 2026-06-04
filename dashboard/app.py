@@ -197,7 +197,7 @@ with col2:
 # BOTÃO DE PREVISÃO
 # ==========================================================
 
-if st.button("🚀 Analisar Risco"):
+if st.button(" Analisar Risco"):
 
     novo_cenario = pd.DataFrame({
         "umidade": [umidade],
@@ -217,27 +217,47 @@ if st.button("🚀 Analisar Risco"):
 
     if risco_previsto == "Baixo":
 
-        st.success(
-            " RISCO BAIXO\n\nOperação recomendada."
-        )
+        st.success(" RISCO BAIXO")
+
+        st.info("""
+        Recomendação:
+        • Operação liberada.
+        • Condições consideradas seguras.
+        • Continuar monitoramento preventivo.
+        """)
 
     elif risco_previsto == "Medio":
 
-        st.warning(
-            " RISCO MÉDIO\n\nMonitoramento recomendado."
-        )
+        st.warning(" RISCO MÉDIO")
+
+        st.info("""
+        Recomendação:
+        • Monitorar condições climáticas.
+        • Reduzir velocidade da operação.
+        • Avaliar o terreno antes da execução.
+        """)
 
     elif risco_previsto == "Alto":
 
-        st.error(
-            " RISCO ALTO\n\nAvalie as condições antes da operação."
-        )
+        st.error(" RISCO ALTO")
+
+        st.info("""
+        Recomendação:
+        • Avaliar necessidade da operação.
+        • Evitar áreas próximas a corpos d'água.
+        • Realizar inspeção preventiva dos equipamentos.
+        """)
 
     else:
 
-        st.error(
-            " RISCO CRÍTICO\n\nOperação não recomendada."
-        )
+        st.error(" RISCO CRÍTICO")
+
+        st.info("""
+        Recomendação:
+        • Operação não recomendada.
+        • Aguardar melhoria das condições do solo.
+        • Redefinir rota ou cronograma da atividade.
+        """)
 
     st.write(
         f"### Classificação Prevista: **{risco_previsto}**"
