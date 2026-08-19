@@ -1,6 +1,22 @@
 {
-    "soil_moisture": 95.9,
-    "pitch": -25.6,
-    "roll": 36.9,
-    "proximity_distance": 669.2
+    "soil_moisture": 15.9,
+    "pitch": -28.0,
+    "roll": 35.0,
+    "water_distance": 621.0,
+    "soil_risk": "LOW",
+    "pitch_risk": "CRITICAL",
+    "roll_risk": "CRITICAL",
+    "water_risk": "LOW",
+    "sensor_operational_risk": "CRITICAL",
+    "precipitation_mm": 20.0,
+    "precipitation_risk": "MEDIUM",
+    "operational_risk": "CRITICAL",
+    "predicted_risk": "CRITICAL",
+    "predictive_risk_score": 87.17,
+    "risk_probabilities": {
+        "CRITICAL": 0.645,
+        "HIGH": 0.325,
+        "LOW": 0.0,
+        "MEDIUM": 0.03
+    }
 }

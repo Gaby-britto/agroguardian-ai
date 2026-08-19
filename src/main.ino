@@ -2,6 +2,7 @@
 
 #include "constants.h"
 #include "sensors/sensor_readings.h"
+#include "risk/operational_risk.h"
 
 // ==========================================================
 // SETUP
@@ -27,8 +28,14 @@ void loop() {
     SensorReadings readings =
         readSensors();
 
-    printSensorReadings(
-        readings
+    RiskAssessment assessment =
+        evaluateOperationalRisk(
+            readings
+        );
+
+    printOperationalData(
+        readings,
+        assessment
     );
 
     delay(

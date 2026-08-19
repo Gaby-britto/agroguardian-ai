@@ -4,11 +4,9 @@ struct SensorReadings {
     float soilMoisture;
     float pitch;
     float roll;
-    float proximityDistance;
+    float waterDistance;
 };
 
 void initializeSensors();
 
 SensorReadings readSensors();
-
-void printSensorReadings(const SensorReadings& readings);

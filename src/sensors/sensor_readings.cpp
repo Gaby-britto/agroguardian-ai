@@ -62,9 +62,8 @@ float readSoilMoisture() {
 // Simulação do LiDAR
 // ==========================================================
 
-float readSimulatedLidarDistance() {
+float readWaterDistance() {
 
-    // Garante que o trigger inicia em LOW
     digitalWrite(
         ULTRASONIC_TRIG_PIN,
         LOW
@@ -72,7 +71,6 @@ float readSimulatedLidarDistance() {
 
     delayMicroseconds(2);
 
-    // Pulso de disparo
     digitalWrite(
         ULTRASONIC_TRIG_PIN,
         HIGH
@@ -85,7 +83,6 @@ float readSimulatedLidarDistance() {
         LOW
     );
 
-    // Mede o tempo de retorno
     unsigned long duration = pulseIn(
         ULTRASONIC_ECHO_PIN,
         HIGH,
@@ -96,7 +93,6 @@ float readSimulatedLidarDistance() {
         return LIDAR_SIMULATED_MAX_DISTANCE_M;
     }
 
-    // Distância física simulada pelo HC-SR04
     float distanceCm =
         duration
         * SOUND_SPEED_CM_PER_US
@@ -108,11 +104,7 @@ float readSimulatedLidarDistance() {
         ULTRASONIC_MAX_DISTANCE_CM
     );
 
-    // ======================================================
-    // Conversão HC-SR04 → LiDAR simulado
-    // ======================================================
-
-    float simulatedDistanceMeters = mapFloat(
+    float waterDistance = mapFloat(
         distanceCm,
         ULTRASONIC_MIN_DISTANCE_CM,
         ULTRASONIC_MAX_DISTANCE_CM,
@@ -120,7 +112,7 @@ float readSimulatedLidarDistance() {
         LIDAR_SIMULATED_MAX_DISTANCE_M
     );
 
-    return simulatedDistanceMeters;
+    return waterDistance;
 }
 
 // ==========================================================
@@ -231,52 +223,8 @@ SensorReadings readSensors() {
         readings.roll
     );
 
-    readings.proximityDistance =
-        readSimulatedLidarDistance();
+    readings.waterDistance =
+        readWaterDistance();
 
     return readings;
-}
-
-// ==========================================================
-// Saída Serial
-// ==========================================================
-
-void printSensorReadings(
-    const SensorReadings& readings
-) {
-
-    Serial.print("soil_moisture=");
-    Serial.print(
-        readings.soilMoisture,
-        1
-    );
-
-    Serial.print(";");
-
-    Serial.print("pitch=");
-    Serial.print(
-        readings.pitch,
-        1
-    );
-
-    Serial.print(";");
-
-    Serial.print("roll=");
-    Serial.print(
-        readings.roll,
-        1
-    );
-
-    Serial.print(";");
-
-    Serial.print(
-        "proximity_distance="
-    );
-
-    Serial.print(
-        readings.proximityDistance,
-        1
-    );
-
-    Serial.println(";");
 }
